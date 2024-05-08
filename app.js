@@ -63,6 +63,7 @@ function update() {
         // move ball
         ball.location.x += (timediff * ball.speed.x);
         ball.location.y += (timediff * ball.speed.y);
+        ball.rotation += (timediff * ball.speed.r);
     });
 }
 
@@ -71,7 +72,12 @@ function render () {
     ctx.clearRect(0,0,1920,1080);
     // draw balls
     balls.forEach((ball) => {
-        ctx.drawImage(pokeball,ball.location.x,ball.location.y);
+		//ctx.drawImage(pokeball,ball.location.x,ball.location.y);
+		ctx.save();
+		ctx.translate(ball.location.x,ball.location.y);
+		ctx.rotate(ball.rotation*Math.PI/180);
+		ctx.drawImage(pokeball,-pokeball.width/2,-pokeball.height/2);
+		ctx.restore();
     });
 }
 
@@ -84,7 +90,12 @@ function run() {
 function add_ball() {
     balls.push({
         location: {x:0, y:1080},
-        speed: {x:1000*(0.5+Math.random()), y:-1000*(0.5+Math.random())},
+        speed: {
+			x:1000*(0.5+Math.random()), 
+			y:-1000*(0.5+Math.random()),
+			r:720*Math.random()
+		},
+        //speed: {x:1000, y:-1000},
         rotation: 0
     });
 }
