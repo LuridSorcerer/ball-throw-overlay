@@ -4,8 +4,7 @@ let ctx;
 let time;
 
 let balls = [];
-let pokeball;
-let pctx;
+let pokeball; // pokeball image canvas
 
 function init() {
     // get canvas and set the dimensions
@@ -24,7 +23,7 @@ function init() {
     pokeball = document.createElement("canvas");
     pokeball.width = 64;
     pokeball.height = 64;
-    pctx = pokeball.getContext("2d");
+    let pctx = pokeball.getContext("2d");
     // draw the outline
     pctx.fillStyle = "black";
     pctx.beginPath();
@@ -65,7 +64,11 @@ function update() {
         ball.location.x += (timediff * ball.speed.x);
         ball.location.y += (timediff * ball.speed.y);
         ball.location.r += (timediff * ball.speed.r);
+        // add age
+        ball.age += timediff;
     });
+    // remove aged balls 
+    balls = balls.filter(ball => ball.age < 5.0); 
 }
 
 function render () {
@@ -73,7 +76,6 @@ function render () {
     ctx.clearRect(0,0,1920,1080);
     // draw balls
     balls.forEach((ball) => {
-		//ctx.drawImage(pokeball,ball.location.x,ball.location.y);
 		ctx.save();
 		ctx.translate(ball.location.x,ball.location.y);
 		ctx.rotate(ball.location.r*Math.PI/180);
@@ -100,8 +102,7 @@ function add_ball() {
 			y:-1000*(0.5+Math.random()),
 			r:720*Math.random()
 		},
-        //speed: {x:1000, y:-1000},
-        //rotation: 0
+		age: 0
     });
 }
 
