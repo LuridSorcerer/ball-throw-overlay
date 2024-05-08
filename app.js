@@ -68,10 +68,8 @@ function update() {
 
 function render () {
     // clear canvas
-    ctx.fillStyle = "white";
-    ctx.fillRect(0,0,1920,1080);
+    ctx.clearRect(0,0,1920,1080);
     // draw balls
-    ctx.fillStyle = "black";
     balls.forEach((ball) => {
         ctx.drawImage(pokeball,ball.location.x,ball.location.y);
     });
