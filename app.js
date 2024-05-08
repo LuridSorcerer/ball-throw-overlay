@@ -5,6 +5,7 @@ let time;
 
 let balls = [];
 let pokeball;
+let pctx;
 
 function init() {
     // get canvas and set the dimensions
@@ -22,32 +23,32 @@ function init() {
     pokeball = document.createElement("canvas");
     pokeball.width = 64;
     pokeball.height = 64;
-    let ptx = pokeball.getContext("2d");
+    pctx = pokeball.getContext("2d");
     // draw the outline
-    ptx.fillStyle = "black";
-    ptx.beginPath();
-    ptx.arc(32,32,32,0,2*Math.PI);
-    ptx.fill();
+    pctx.fillStyle = "black";
+    pctx.beginPath();
+    pctx.arc(32,32,32,0,2*Math.PI);
+    pctx.fill();
     // red top half
-    ptx.fillStyle = "red";
-    ptx.beginPath();
-    ptx.arc(32,30, 28, Math.PI,0);
-    ptx.fill();
+    pctx.fillStyle = "red";
+    pctx.beginPath();
+    pctx.arc(32,30, 28, Math.PI,0);
+    pctx.fill();
     // white bottom half
-    ptx.fillStyle = "white";
-    ptx.beginPath();
-    ptx.arc(32,34, 28, 0, Math.PI);
-    ptx.fill();
+    pctx.fillStyle = "white";
+    pctx.beginPath();
+    pctx.arc(32,34, 28, 0, Math.PI);
+    pctx.fill();
     // black outline of button
-    ptx.fillStyle = "black";
-    ptx.beginPath();
-    ptx.arc(32,32, 8, 0, Math.PI*2);
-    ptx.fill();
+    pctx.fillStyle = "black";
+    pctx.beginPath();
+    pctx.arc(32,32, 8, 0, Math.PI*2);
+    pctx.fill();
     // white button
-    ptx.fillStyle = "white";
-    ptx.beginPath();
-    ptx.arc(32,32, 6, 0, Math.PI*2);
-    ptx.fill();
+    pctx.fillStyle = "white";
+    pctx.beginPath();
+    pctx.arc(32,32, 6, 0, Math.PI*2);
+    pctx.fill();
 }
 
 function update() {
