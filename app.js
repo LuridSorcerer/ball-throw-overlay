@@ -18,6 +18,7 @@ function init() {
     time = Date.now();
     // add event listener for mouse click
     document.addEventListener("click", (e) => {add_ball();});
+    document.addEventListener("touchstart", (e) => {add_ball();});
 
     // create poke ball image
     pokeball = document.createElement("canvas");
