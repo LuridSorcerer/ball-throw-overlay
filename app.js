@@ -9,6 +9,8 @@ let pokeball; // pokeball image canvas
 let greatball;
 let ultraball;
 
+let timer = 0;
+
 function init() {
     // get canvas and set the dimensions
     canvas = document.getElementById("canvas");
@@ -144,6 +146,12 @@ function update() {
     });
     // remove aged balls 
     balls = balls.filter(ball => ball.age < 5.0); 
+
+    timer += timediff;
+    if (timer > 0.1) {
+        add_ball();
+        timer = 0;
+    }
 }
 
 function render () {
