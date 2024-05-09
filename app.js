@@ -204,6 +204,18 @@ function run() {
 }
 
 function add_ball() {
+	// select a ball type (index in balltypes[])
+	var n = Math.random() * 100;
+	var t;
+	if (n < 5) { // 5% chance of premier ball
+		t = 3;
+	} else if (n < 15) { // 10% chance of ultra ball
+		t = 2;
+	} else if (n < 40) { // 25% chance of great ball
+		t = 1;
+	} else {	// otherwise, poke ball
+		t = 0;
+	}
     balls.push({
         location: {
 			x:0, 
@@ -216,7 +228,7 @@ function add_ball() {
 			r:720*Math.random()
 		},
 		age: 0,
-		type: Math.floor(Math.random() * 4)
+		type: t
     });
 }
 
