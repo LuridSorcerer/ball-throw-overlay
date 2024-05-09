@@ -1,1 +1,3 @@
-server/
+server/node_modules/
+server/twitch_cli/
+server/creds.js
