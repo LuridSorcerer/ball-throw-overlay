@@ -10,6 +10,10 @@ let greatball;
 let ultraball;
 let premball;
 
+const ballsize = 64;
+const bouncestrength = -0.5;
+const balllifetime = 5.0;
+
 const socket = new WebSocket("ws://localhost:8080");
 socket.addEventListener( "message", (e) => { add_ball(); });
 
@@ -179,9 +183,30 @@ function update() {
         ball.location.r += (timediff * ball.speed.r);
         // add age
         ball.age += timediff;
+        // bounce off of the right wall
+        if (ball.location.x > canvas.width-(ballsize/2)) {
+			ball.location.x = canvas.width-(ballsize/2);
+			ball.speed.x *= bouncestrength;
+		}
+		// bounce off the top
+		if (ball.location.y < 0+(ballsize/2)) {
+			ball.location.y = 0+(ballsize/2);
+			ball.speed.y *= bouncestrength;
+		}
+		// bounce off the left wall
+		if (ball.location.x < 0+(ballsize/2)) {
+			ball.location.x = 0+(ballsize/2);
+			ball.speed.x *= bouncestrength;
+		}
+		// bounce off floor
+		if (ball.location.y > canvas.height-(ballsize/2)) {
+			ball.location.y = canvas.height-(ballsize/2);
+			ball.speed.y *= bouncestrength;
+		}
+			
     });
     // remove aged balls 
-    balls = balls.filter(ball => ball.age < 5.0); 
+    balls = balls.filter(ball => ball.age < balllifetime);
 }
 
 function render () {
@@ -218,8 +243,8 @@ function add_ball() {
 	}
     balls.push({
         location: {
-			x:0, 
-			y:1080,
+			x:ballsize, 
+			y:1080-ballsize,
 			r:0
 		},
         speed: {
