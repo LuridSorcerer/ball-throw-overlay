@@ -13,6 +13,7 @@ With the credentials in place, run:
 
 `
 npm i
+
 node twitchbot.js
 `
 
