@@ -211,7 +211,7 @@ function update() {
 
 function render () {
     // clear canvas
-    ctx.clearRect(0,0,1920,1080);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
     // draw balls
     balls.forEach((ball) => {
 		ctx.save();
@@ -232,19 +232,15 @@ function add_ball() {
 	// select a ball type (index in balltypes[])
 	var n = Math.random() * 100;
 	var t;
-	if (n < 5) { // 5% chance of premier ball
-		t = 3;
-	} else if (n < 15) { // 10% chance of ultra ball
-		t = 2;
-	} else if (n < 40) { // 25% chance of great ball
-		t = 1;
-	} else {	// otherwise, poke ball
-		t = 0;
-	}
+	if (n < 5)       { t = 3; }// 5% chance of premier ball	
+	else if (n < 15) { t = 2; } // 10% chance of ultra ball
+	else if (n < 40) { t = 1; } // 25% chance of great ball
+	else             { t = 0; } // otherwise, poke ball
+
     balls.push({
         location: {
 			x:ballsize, 
-			y:1080-ballsize,
+			y:canvas.height-ballsize,
 			r:0
 		},
         speed: {
