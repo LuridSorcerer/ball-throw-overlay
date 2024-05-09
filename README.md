@@ -11,11 +11,10 @@ and fill in the bot username, oauth token, and channels.
 
 With the credentials in place, run:
 
-`
+```
 npm i
-
 node twitchbot.js
-`
+```
 
 If no errors occur, load up the overlay in OBS. Set the dimensions to 
 1920x1080. Animations are independent of frame rate, so match your 
