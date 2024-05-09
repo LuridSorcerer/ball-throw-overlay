@@ -5,9 +5,10 @@ let time;
 
 let balls = [];
 let balltypes = [];
-let pokeball; // pokeball image canvas
+let pokeball; 
 let greatball;
 let ultraball;
+let premball;
 
 const socket = new WebSocket("ws://localhost:8080");
 socket.addEventListener( "message", (e) => { add_ball(); });
@@ -125,8 +126,42 @@ function init() {
     pctx.beginPath();
     pctx.arc(32,32, 6, 0, Math.PI*2);
     pctx.fill();
+
+    // create premier ball image
+    premball = document.createElement("canvas");
+    premball.width = 64;
+    premball.height = 64;
+    pctx = premball.getContext("2d");
+    // draw the outline
+    pctx.fillStyle = "black";
+    pctx.beginPath();
+    pctx.arc(32,32,32,0,2*Math.PI);
+    pctx.fill();
+    // white top half
+    pctx.fillStyle = "white";
+    pctx.beginPath();
+    pctx.arc(32,30, 28, Math.PI,0);
+    pctx.fill();
+    // white bottom half
+    pctx.fillStyle = "white";
+    pctx.beginPath();
+    pctx.arc(32,34, 28, 0, Math.PI);
+    pctx.fill();
+    // red seam in middle
+    pctx.fillStyle = "red";
+    pctx.fillRect(4,30,56,4);
+    // red outline of button
+    pctx.fillStyle = "red";
+    pctx.beginPath();
+    pctx.arc(32,32, 8, 0, Math.PI*2);
+    pctx.fill();
+    // white button
+    pctx.fillStyle = "white";
+    pctx.beginPath();
+    pctx.arc(32,32, 6, 0, Math.PI*2);
+    pctx.fill();
     
-    balltypes = [pokeball,greatball,ultraball];
+    balltypes = [pokeball,greatball,ultraball,premball];
 }
 
 function update() {
@@ -181,7 +216,7 @@ function add_ball() {
 			r:720*Math.random()
 		},
 		age: 0,
-		type: Math.floor(Math.random() * 3)
+		type: Math.floor(Math.random() * 4)
     });
 }
 
