@@ -1,8 +1,8 @@
 {
-  "name": "server",
+  "name": "ball-throw-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Listen to Twitch chat, throw balls on an OBS overlay",
+  "main": "twitchbot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
