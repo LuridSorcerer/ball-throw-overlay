@@ -26,7 +26,7 @@ function onMessageHandler(target,context,msg,self) {
 	// if it was the bot that posted it, don't do anything
 	if(self) { return; }
 	// count how many times the word "ball" appears
-    var count = (msg.match(/ball/g) || []).length;
+    var count = (msg.toLowerCase().match(/ball/g) || []).length;
     // send that many balls
 	for (var i = 0; i < count; i++) {
 		wss.clients.forEach(client => client.send("ball"));
